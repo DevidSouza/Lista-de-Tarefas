@@ -1,9 +1,11 @@
 let id = 0;
 
 function add_tarefa() {
-    let input = document.getElementById("input").value;
-    let capitaliza = String(input[0]).toUpperCase() + String(input).substring(1)
-
+    let input = String(document.getElementById("input").value);
+    let capitaliza = input;
+    if (input !== ''){
+        capitaliza = input[0].toUpperCase() + input.substring(1);   
+    };
     document.getElementById("area-tarefa").innerHTML +=
         "<div id='item" + id + "' class='tarefa-e-button-del'><input id='btn-checkout" + id + "' class='btn-checkout' name='card' type='radio'><div onclick='executa_complete_task()' id='tarefa" + id + "' class='tarefa'><h4 id='texto" + id + "' class='texto'>" + capitaliza + "</h4></div></div><button onclick='executa_del_tarefa()' id='button" + id + "' class='del-button'><img src='icons/lixeira.png'style='max-width: 15%; color: white;'>Deletar</button>";
 
