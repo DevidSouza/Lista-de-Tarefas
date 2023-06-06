@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+}
+
+body{
+    box-sizing: border-box;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 200px;
+    background-color: white
+
+}
+
+h1{
+    padding: 20px;
+    color: rgb(33, 32, 32);
+    text-shadow: 2px 2px 5px rgb(171, 174, 177);
+    font-size: 40px;
+}
+
+
+.input-button{
+    display: flex;
+    flex-flow: row wrap;
+    height: 80px;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 30px;
+}
+
+
+.input{
+    flex: 68%;
+    /* height: 67px; */
+    font-size: 20px;
+    border: 1px solid grey;
+    border-radius: 5px 0 0 5px;
+    padding-left: 100px;
+}
+
+/* PSEUDO-CLASSE QUE MANIPULA O PLACEHOLDER */
+#input::-webkit-input-placeholder{
+    color:grey;
+}
+
+/* PSEUDO-CLASSE QUE MANIPULA O FOCUS */
+#input:focus{
+    /* DIMINUI BORDA DO INPUT QUANDO ESTÁ FOCADO */
+    box-shadow: 3 3 3 3;
+    outline: 0;
+    color: grey;
+}
+
+
+.add-button{
+    flex: 17%;
+    background-color: rgb(0, 47, 255);
+    color: white;
+    border: 0
+}
+
+/* ----------------- */
+
+/* SEGUNDA SEÇÃO */
+
+/* ----------------- */
+.tarefa-e-button-del{
+    /* border: 1px solid blueviolet; */
+    display: flex;
+    flex-flow: row wrap;
+    flex: 60%;
+    height: 70px;
+    margin-left: 15%;
+    align-items: center;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 8px 0 rgb(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background-color: rgba(16, 233, 81, 0.809);
+    opacity: 0.7; */
+}
+
+
+.btn-checkout{
+    display: flex;
+    flex: 10%;
+    /* width: 40%; */
+    height: 1.8em;
+}
+
+
+.tarefa{
+    display: flex;
+    /* border: 1px solid orangered; */
+    flex: 87%;
+    text-align: left;
+    align-items: center;
+    height: 100%;
+
+}
+
+
+.texto{
+    /* border: 1px solid blue; */
+    color: rgb(128, 128, 128);
+    /* text-decoration: line-through; */
+}
+
+
+.del-button{
+    flex: 8%;
+    flex-flow: row wrap;
+    background-color: red;
+    color: white;
+    margin-right: 15%;
+    border: 0;
+    margin-bottom: 20px;
+}
