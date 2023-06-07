@@ -31,7 +31,6 @@ h1{
 
 .input{
     flex: 68%;
-    /* height: 67px; */
     font-size: 20px;
     border: 1px solid grey;
     border-radius: 5px 0 0 5px;
@@ -65,7 +64,6 @@ h1{
 
 /* ----------------- */
 .tarefa-e-button-del{
-    /* border: 1px solid blueviolet; */
     display: flex;
     flex-flow: row wrap;
     flex: 60%;
@@ -74,22 +72,18 @@ h1{
     align-items: center;
     margin-bottom: 20px;
     box-shadow: 0px 4px 8px 0 rgb(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    /* background-color: rgba(16, 233, 81, 0.809);
-    opacity: 0.7; */
 }
 
 
 .btn-checkout{
     display: flex;
     flex: 10%;
-    /* width: 40%; */
     height: 1.8em;
 }
 
 
 .tarefa{
     display: flex;
-    /* border: 1px solid orangered; */
     flex: 87%;
     text-align: left;
     align-items: center;
@@ -99,9 +93,7 @@ h1{
 
 
 .texto{
-    /* border: 1px solid blue; */
     color: rgb(128, 128, 128);
-    /* text-decoration: line-through; */
 }
 
 
