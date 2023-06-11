@@ -1,5 +1,5 @@
 let id = 0;
-var todas_as_tarefas = [];
+let todas_as_tarefas = [];
 
 function add_tarefa() {
     let input = String(document.getElementById("input").value);
@@ -7,8 +7,10 @@ function add_tarefa() {
     if (input !== '') {
         capitaliza = input[0].toUpperCase() + input.substring(1);
     };
-    todas_as_tarefas.push("<div id='item" + id + "' class='tarefa-e-button-del'><input id='btn-checkout" + id + "' class='btn-checkout' name='card' type='radio'><div onclick='executa_complete_task()' id='tarefa" + id + "' class='tarefa'><h4 id='texto" + id + "' class='texto'>" + capitaliza + "</h4></div></div><button onclick='executa_del_tarefa()' id='button" + id + "' class='del-button'><img src='icons/lixeira.png'style='max-width: 15%; color: white;'>Deletar</button>");
+    todas_as_tarefas.unshift("<div onclick='executa_complete_task()' id='item" + id + "' class='tarefa-e-button-del'><input id='btn-checkout" + id + "' class='btn-checkout' name='card' type='radio'><div id='tarefa" + id + "' class='tarefa'><h4 id='texto" + id + "' class='texto'>" + capitaliza + "</h4></div></div><button onclick='executa_del_tarefa()' id='button" + id + "' class='del-button'><img src='icons/lixeira.png'style='max-width: 15%; color: white;'>Deletar</button>");
+
     document.getElementById("area-tarefa").innerHTML = ''
+
     for (tarefa in todas_as_tarefas) {
         document.getElementById("area-tarefa").innerHTML += todas_as_tarefas[tarefa]
     }
@@ -71,6 +73,7 @@ function complete_task(e) {
         checked_task(item_id, checked_btn_id);
     }
     else {
+        checked_task(item_id, checked_btn_id);
         return
     }
 }
@@ -89,8 +92,7 @@ function checked_task_to_down(item, list, button, checked) {
         if (list[task_index].includes(String(item.id)) && checked == false) {
 
             task_and_button = item.outerHTML + button.outerHTML;
-            list.splice(task_index, 1);
-            list.unshift(String(task_and_button));
+            list.splice(task_index, 1, task_and_button);
             return list;
         }
     }
@@ -106,15 +108,10 @@ function checked_task(item_id, btn_id) {
         let object_item = document.querySelector('#' + item_id);
         let object_button = document.querySelector('#button' + get_number(btn_id));
 
-
-        // console.log(object_item)
-        // console.log(object_button)
-
         let task_list = checked_task_to_down(object_item, todas_as_tarefas, object_button, false);
         document.getElementById("area-tarefa").innerHTML = ''
         for (task in task_list) {
             document.getElementById("area-tarefa").innerHTML += task_list[task]
-
         }
         return
     };
@@ -126,7 +123,6 @@ function checked_task(item_id, btn_id) {
 
     let object_item = document.querySelector('#' + item_id);
     let object_button = document.querySelector('#button' + get_number(btn_id));
-
 
     // console.log(object_item)
     // console.log(object_button)
