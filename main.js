@@ -1,6 +1,14 @@
 let id = 0;
 let todas_as_tarefas = [];
 
+// Adiciona uma tarefa ao clicar na tecla Enter
+document.addEventListener('keydown', (e)=> {
+    if(e.key == "Enter"){
+      document.getElementById("add-button").click();
+    }
+});
+
+
 function add_tarefa() {
     let input = String(document.getElementById("input").value);
     let capitaliza = input;
@@ -103,7 +111,6 @@ function checked_task(item_id, btn_id) {
         document.getElementById(item_id).style.backgroundColor = 'white';
         document.getElementById('texto' + get_number(item_id)).style.textDecoration = 'none'
         document.getElementById(item_id).style.opacity = '1';
-        document.getElementById(btn_id).checked = false;
 
         let object_item = document.querySelector('#' + item_id);
         let object_button = document.querySelector('#button' + get_number(btn_id));
@@ -113,26 +120,25 @@ function checked_task(item_id, btn_id) {
         for (task in task_list) {
             document.getElementById("area-tarefa").innerHTML += task_list[task]
         }
+
+        document.getElementById(btn_id).checked = false;
         return
     };
 
     document.getElementById(item_id).style.backgroundColor = 'rgba(16, 233, 81, 0.808)';
     document.getElementById(item_id).style.opacity = '0.7';
     document.getElementById('texto' + get_number(item_id)).style.textDecoration = 'line-through';
-    document.getElementById(btn_id).checked = true;
 
     let object_item = document.querySelector('#' + item_id);
     let object_button = document.querySelector('#button' + get_number(btn_id));
-
-    // console.log(object_item)
-    // console.log(object_button)
 
     let task_list = checked_task_to_down(object_item, todas_as_tarefas, object_button, true);
     document.getElementById("area-tarefa").innerHTML = ''
     for (task in task_list) {
         document.getElementById("area-tarefa").innerHTML += task_list[task]
-
     }
+
+    document.getElementById(btn_id).checked = true;
 }
 
 
