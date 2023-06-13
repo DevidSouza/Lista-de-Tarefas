@@ -1,0 +1,147 @@
+@media only screen and (max-width: 990px) {
+
+    .input {
+        flex: 60%;
+        font-size: 20px;
+    }
+
+    .add-button {
+        flex: 7%;
+        background-color: rgb(0, 47, 255);
+        color: white;
+        border: 0
+    }
+    
+}
+
+@media only screen and (max-width: 800px) {
+
+    .input {
+        flex: 45%;
+        font-size: 15px;
+    }
+
+    .add-button {
+        flex: 15%;
+        background-color: rgb(0, 47, 255);
+        color: white;
+        border: 0
+    }
+
+    .tarefa-e-button-del{
+        flex: 45%;
+        margin-left: 15%;
+    }
+
+    .btn-checkout{
+        flex: 15%;
+    }
+    
+    .tarefa{
+        flex: 70%;
+    }
+    
+    .del-button{
+        flex: 10%;
+        margin-right: 15%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+
+    .input {
+        flex: 50%;
+        font-size: 15px;
+        padding-left: 50px;
+    }
+
+    .add-button {
+        flex: 25%;
+        background-color: rgb(0, 47, 255);
+        color: white;
+        border: 0
+    }
+
+    .tarefa-e-button-del{
+        flex: 50%;
+        margin-left: 15%;
+    }
+    
+    .del-button{
+        flex: 15%;
+        margin-right: 15%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    .input-button{
+        margin-left: 14%;
+        margin-right: 14%;
+    }
+
+    .input {
+        flex: 30%;
+        font-size: 15px;
+        padding-left: 50px;
+    }
+
+    .add-button {
+        flex: 7%;
+        background-color: rgb(0, 47, 255);
+        color: white;
+        border: 0
+    }
+
+    .tarefa-e-button-del{
+        flex: 45%;
+        margin-left: 12%;
+    }
+    
+    .del-button{
+        flex: 20%;
+        margin-right: 12%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+
+    .input-button{
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .input {
+        flex: 20%;
+        font-size: 14px;
+        padding-left: 50px;
+    }
+
+    .add-button {
+        flex: 7%;
+        background-color: rgb(0, 47, 255);
+        color: white;
+        border: 0
+    }
+}
+
+@media only screen and ( max-width: 425px) {
+
+    .input-button{
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .input {
+        flex: 20%;
+        font-size: 12px;
+        padding-left: 50px;
+    }
+
+    .add-button {
+        flex: 5%;
+        background-color: rgb(0, 47, 255);
+        color: white;
+        border: 0
+    }
+}

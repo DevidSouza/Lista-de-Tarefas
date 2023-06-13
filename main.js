@@ -9,13 +9,13 @@ document.addEventListener('keydown', (e)=> {
 });
 
 
-function add_tarefa() {
+function add_task() {
     let input = String(document.getElementById("input").value);
     let capitaliza = input;
     if (input !== '') {
         capitaliza = input[0].toUpperCase() + input.substring(1);
     };
-    todas_as_tarefas.unshift("<div onclick='executa_complete_task()' id='item" + id + "' class='tarefa-e-button-del'><input id='btn-checkout" + id + "' class='btn-checkout' name='card' type='radio'><div id='tarefa" + id + "' class='tarefa'><h4 id='texto" + id + "' class='texto'>" + capitaliza + "</h4></div></div><button onclick='executa_del_tarefa()' id='button" + id + "' class='del-button'><img src='icons/lixeira.png'style='max-width: 15%; color: white;'>Deletar</button>");
+    todas_as_tarefas.unshift("<div onclick='execute_complete_task()' id='item" + id + "' class='tarefa-e-button-del'><input id='btn-checkout" + id + "' class='btn-checkout' name='card' type='radio'><div id='tarefa" + id + "' class='tarefa'><h4 id='texto" + id + "' class='texto'>" + capitaliza + "</h4></div></div><button onclick='execute_del_task()' id='button" + id + "' class='del-button'><img src='icons/lixeira.png'style='max-width: 15%; color: white;'>Deletar</button>");
 
     document.getElementById("area-tarefa").innerHTML = ''
 
@@ -26,12 +26,12 @@ function add_tarefa() {
 };
 
 // CAPTURA ID DE UMA TAG FILHO E DELETA
-function executa_del_tarefa() {
+function execute_del_task() {
     let area_tarefa = document.getElementById('area-tarefa');
-    area_tarefa.onclick = area_tarefa.addEventListener('click', del_tarefa)
+    area_tarefa.onclick = area_tarefa.addEventListener('click', del_task)
 }
 
-function del_tarefa(e) {
+function del_task(e) {
     let button_id = String(e.target.id);
     let item_id = String("item" + get_number(button_id));
 
@@ -67,7 +67,7 @@ function get_number(str) {
 // =============================================================
 
 
-function executa_complete_task() {
+function execute_complete_task() {
     let area_tarefa = document.getElementById('area-tarefa');
     area_tarefa.onclick = area_tarefa.addEventListener('click', complete_task);
 }
