@@ -1,63 +1,96 @@
 let id = 0;
-let todas_as_tarefas = [];
+let all_task = [];
+let main = document.getElementById("task-area");
 let btn_add = document.getElementById("add-button");
-let input = document.getElementById("input"); 
+let input = document.getElementById("input");
+
 
 // Adiciona uma tarefa ao clicar na tecla Enter
-document.addEventListener('keydown', (e)=> {
-    if(e.key == "Enter"){
+document.addEventListener('keydown', (e) => {
+    if (e.key == "Enter") {
         e.preventDefault()
-      btn_add.click();
+        btn_add.click();
     }
 });
 
 
 function add_task() {
-    let capitaliza = String(input.value);
-    if (input !== '') {
-        capitaliza = capitaliza[0].toUpperCase() + capitaliza.substring(1);
-    };
-    todas_as_tarefas.unshift("<div onclick='execute_complete_task()' id='item" + id + "' class='tarefa-e-button-del'><input id='btn-checkout" + id + "' class='btn-checkout' name='card' type='radio'><div id='tarefa" + id + "' class='tarefa'><h4 id='texto" + id + "' class='texto'>" + capitaliza + "</h4></div></div><button onclick='execute_del_task()' id='button" + id + "' class='del-button'><img src='icons/lixeira.png'style='max-width: 15%; color: white;'>Deletar</button>");
+    let input_value = String(input.value);
+    if ((input_value !== '') && (input_value !== "null") && (input_value !== "undefined")) {
+        let capitalize = input_value[0].toUpperCase() + input_value.substring(1);
 
-    document.getElementById("area-tarefa").innerHTML = ''
+        all_task.unshift(`
+            <div id='task${id}' class='task'>
+                <div onclick='marked_task(task${id})' class='task-verification'>
+                    <i id='icone${id}' class="mdi mdi-circle-outline"></i>
+                </div>
 
-    for (tarefa in todas_as_tarefas) {
-        document.getElementById("area-tarefa").innerHTML += todas_as_tarefas[tarefa]
-    }
+                <div id='task_content${id}' onclick='marked_task(task${id})' class='task-content'>
+                    ${capitalize}
+                </div>
 
-    input.value = ""
-    input.focus()
+                <div class="task-del-button">
+                    <button onclick='delete_task(task${id})' class='del-button'>Deletar</button>
+                </div>
+            </div>
+    `);
 
-    id += 1;
-};
+        main.innerHTML = ''
 
-// CAPTURA ID DE UMA TAG FILHO E DELETA
-function execute_del_task() {
-    let area_tarefa = document.getElementById('area-tarefa');
-    area_tarefa.onclick = area_tarefa.addEventListener('click', del_task)
-}
-
-function del_task(e) {
-    let button_id = String(e.target.id);
-    let item_id = String("item" + get_number(button_id));
-
-    if (button_id.includes('button')) {
-        for (task in todas_as_tarefas) {
-            if (todas_as_tarefas[task].includes(item_id)) {
-                remove_id(item_id);
-                remove_id(button_id);
-                delete todas_as_tarefas[task]
-                return
-            }
+        for (task in all_task) {
+            main.innerHTML += all_task[task]
         }
+
+        input.value = ""
+        input.focus()
+
+        id += 1;
+
     }
     else {
         return
+    };
+};
+
+
+function marked_task(object) {
+    let task = object;
+
+    if (task.getAttribute('class') == 'task') {
+        task.classList.add('marked');
+
+        let task_content = document.getElementById('task_content' + get_number(String(object.id)))
+        task_content.classList.add('marked')
+
+        let icone_id = 'icone' + get_number(String(object.id));
+        let icone_object = document.getElementById(icone_id);
+
+        icone_object.classList.remove('mdi-circle-outline')
+        icone_object.classList.add('mdi-checkbox-marked-circle')
+
+        marked_task_to_down(all_task, object, true);
+    }
+    else {
+        task.classList.remove('marked')
+
+        let task_content = document.getElementById('task_content' + get_number(String(object.id)))
+        task_content.classList.remove('marked')
+
+        let icone_id = 'icone' + get_number(String(object.id));
+        let icone_object = document.getElementById(icone_id);
+
+        icone_object.classList.remove('mdi-checkbox-marked-circle')
+        icone_object.classList.add('mdi-circle-outline')
+
+        marked_task_to_down(all_task, object, false);
     }
 }
 
-function remove_id(id_from_task) {
-    document.getElementById(id_from_task).remove();
+function delete_task(id) {
+    id.remove()
+
+    let id_task = id.id
+    delete all_task[get_number(String(id_task))]
 }
 
 function get_number(str) {
@@ -70,81 +103,22 @@ function get_number(str) {
     return number
 }
 
-// =============================================================
-
-
-function execute_complete_task() {
-    let area_tarefa = document.getElementById('area-tarefa');
-    area_tarefa.onclick = area_tarefa.addEventListener('click', complete_task);
-}
-
-function complete_task(e) {
-    let id_from_task = String(e.target.id);
-    let checked_btn_id = 'btn-checkout' + get_number(id_from_task);
-    let item_id = 'item' + get_number(checked_btn_id);
-
-    if (id_from_task.includes('tarefa')) {
-        checked_task(item_id, checked_btn_id);
-    }
-    else {
-        checked_task(item_id, checked_btn_id);
-        return
-    }
-}
-
-function checked_task_to_down(item, list, button, checked) {
-    let task_and_button = '';
+function marked_task_to_down(list, task, marked) {
     for (task_index in list) {
-        if (list[task_index].includes(String(item.id)) && checked == true) {
-
-            task_and_button = item.outerHTML + button.outerHTML;
-            list.splice(task_index, 1);
-            list.push(String(task_and_button));
-            return list;
+        if (list[task_index].includes(task.id) && marked == true) {
+            list.splice(task_index, 1)
+            list.push(task.outerHTML)
         }
-
-        if (list[task_index].includes(String(item.id)) && checked == false) {
-
-            task_and_button = item.outerHTML + button.outerHTML;
-            list.splice(task_index, 1, task_and_button);
-            return list;
+        else if (list[task_index].includes(task.id) && marked == false) {
+            console.log(list[task_index])
+            list.splice(task_index, 1, task.outerHTML)
         }
     }
-}
 
-function checked_task(item_id, btn_id) {
-    if (document.getElementById(item_id).style.backgroundColor === 'rgba(16, 233, 81, 0.808)') {
-        document.getElementById(item_id).style.backgroundColor = 'white';
-        document.getElementById('texto' + get_number(item_id)).style.textDecoration = 'none'
-        document.getElementById(item_id).style.opacity = '1';
-
-        let object_item = document.querySelector('#' + item_id);
-        let object_button = document.querySelector('#button' + get_number(btn_id));
-
-        let task_list = checked_task_to_down(object_item, todas_as_tarefas, object_button, false);
-        document.getElementById("area-tarefa").innerHTML = ''
-        for (task in task_list) {
-            document.getElementById("area-tarefa").innerHTML += task_list[task]
-        }
-
-        document.getElementById(btn_id).checked = false;
-        return
-    };
-
-    document.getElementById(item_id).style.backgroundColor = 'rgba(16, 233, 81, 0.808)';
-    document.getElementById(item_id).style.opacity = '0.7';
-    document.getElementById('texto' + get_number(item_id)).style.textDecoration = 'line-through';
-
-    let object_item = document.querySelector('#' + item_id);
-    let object_button = document.querySelector('#button' + get_number(btn_id));
-
-    let task_list = checked_task_to_down(object_item, todas_as_tarefas, object_button, true);
-    document.getElementById("area-tarefa").innerHTML = ''
-    for (task in task_list) {
-        document.getElementById("area-tarefa").innerHTML += task_list[task]
+    main.innerHTML = ''
+    for (task_index in list) {
+        main.innerHTML += list[task_index];
     }
 
-    document.getElementById(btn_id).checked = true;
 }
-
 
