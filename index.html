@@ -6,25 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilocss.css">
-    <link rel="stylesheet" href="css/media_queries.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css">
+    <!-- <link rel="stylesheet" href="css/media_queries.css"> -->
     <title>Lista de Tarefas</title>
 </head>
 
 <body>
-    <section style="position: fixed; top: 0; width: 100%; background-color: white;" class="teste">
-        <h1 id="h1">Lista de Tarefas</h1>
+    <h1>Lista de Tarefas</h1>
 
-        <!-- DISCRIÇÃO DA TAREFA  -->
-
-        <div id="div" class="input-button">
-            <input class="input" id="input" type="text" placeholder="Digite sua tarefa">
-            <button onclick="add_task()" id="add-button" class="add-button">Adicionar</button>
-        </div>
-    </section>
+    <header>
+        <input id="input" class="input" type="text" placeholder="Digite sua tarefa">
+        <button onclick="add_task()" id="add-button" class="add-button">Adicionar</button>
+    </header>
 
     <!-- TAREFAS -->
 
-    <section id="area-tarefa" style=" margin-top: 200px; display: flex; flex-flow: row wrap;"></section>
+    <main id="task-area">
+        <div onclick='complete_task()' id='task' class='task'>
+            <div class='task-verification'>
+                <i class="mdi mdi-circle-outline"></i>
+            </div>
+
+            <div class='task-content'>
+                Testando tarefa
+            </div>
+
+            <div class="task-del-button">
+                <button onclick='del_task()' class='del-button'>Deletar</button>
+            </div>
+        </div>
+    </main>
 
     <script src="main.js"></script>
 </body>

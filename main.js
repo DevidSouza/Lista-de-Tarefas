@@ -1,19 +1,21 @@
 let id = 0;
 let todas_as_tarefas = [];
+let btn_add = document.getElementById("add-button");
+let input = document.getElementById("input"); 
 
 // Adiciona uma tarefa ao clicar na tecla Enter
 document.addEventListener('keydown', (e)=> {
     if(e.key == "Enter"){
-      document.getElementById("add-button").click();
+        e.preventDefault()
+      btn_add.click();
     }
 });
 
 
 function add_task() {
-    let input = String(document.getElementById("input").value);
-    let capitaliza = input;
+    let capitaliza = String(input.value);
     if (input !== '') {
-        capitaliza = input[0].toUpperCase() + input.substring(1);
+        capitaliza = capitaliza[0].toUpperCase() + capitaliza.substring(1);
     };
     todas_as_tarefas.unshift("<div onclick='execute_complete_task()' id='item" + id + "' class='tarefa-e-button-del'><input id='btn-checkout" + id + "' class='btn-checkout' name='card' type='radio'><div id='tarefa" + id + "' class='tarefa'><h4 id='texto" + id + "' class='texto'>" + capitaliza + "</h4></div></div><button onclick='execute_del_task()' id='button" + id + "' class='del-button'><img src='icons/lixeira.png'style='max-width: 15%; color: white;'>Deletar</button>");
 
@@ -22,6 +24,10 @@ function add_task() {
     for (tarefa in todas_as_tarefas) {
         document.getElementById("area-tarefa").innerHTML += todas_as_tarefas[tarefa]
     }
+
+    input.value = ""
+    input.focus()
+
     id += 1;
 };
 
