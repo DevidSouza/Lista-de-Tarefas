@@ -33,7 +33,7 @@ function add_task() {
                     <button onclick='delete_task(task${id})' class='del-button'>Deletar</button>
                 </div>
             </div>
-    `);
+        `);
 
         main.innerHTML = ''
 
@@ -52,12 +52,12 @@ function add_task() {
     };
 };
 
-
+// FUNÇÃO QUE MARCA OU DESMARCA TAREFA
 function marked_task(object) {
-    let task = object;
+    let task_object = object;
 
-    if (task.getAttribute('class') == 'task') {
-        task.classList.add('marked');
+    if (task_object.getAttribute('class') == 'task') {
+        task_object.classList.add('marked');
 
         let task_content = document.getElementById('task_content' + get_number(String(object.id)))
         task_content.classList.add('marked')
@@ -71,7 +71,7 @@ function marked_task(object) {
         marked_task_to_down(all_task, object, true);
     }
     else {
-        task.classList.remove('marked')
+        task_object.classList.remove('marked')
 
         let task_content = document.getElementById('task_content' + get_number(String(object.id)))
         task_content.classList.remove('marked')
@@ -93,6 +93,7 @@ function delete_task(id) {
     delete all_task[get_number(String(id_task))]
 }
 
+//  FUNÇÃO QUE OBTEM TODOS OS NÚMEROS CONTIDOS NUMA STRING
 function get_number(str) {
     number = ''
     for (caracter in str) {
@@ -103,6 +104,7 @@ function get_number(str) {
     return number
 }
 
+// FUNÇÃO QUE DESLOCA TAREFA MARCADA PARA O FINAL DA LISTA (ÚLTIMA POSIÇÃO NO DOM)
 function marked_task_to_down(list, task, marked) {
     for (task_index in list) {
         if (list[task_index].includes(task.id) && marked == true) {

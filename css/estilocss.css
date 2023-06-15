@@ -28,7 +28,6 @@ header{
     align-items: center;
     margin: auto auto;
     margin-bottom: 40px;
-    /* border: 1px solid blue; */
 }
 
 
@@ -40,7 +39,6 @@ header{
     border-radius: 5px 0 0 5px;
     color: rgb(69, 68, 68);
     border: 1px solid grey
-    /* border: 1px solid rgb(204, 36, 36); */
 }
 
 /* PSEUDO-CLASSE QUE MANIPULA O FOCUS */
@@ -69,7 +67,6 @@ main{
     justify-content: center;
     align-items: center;
     margin: auto auto;
-    /* border: 1px solid blue; */
 }
 
 .task{
@@ -102,7 +99,6 @@ main{
     text-align: center;
     color: rgb(87, 86, 86);
     font-size: 30px;
-    /* border: 1px solid rgb(26, 205, 166); */
 }
 
 .mdi-checkbox-marked-circle{
@@ -116,7 +112,6 @@ main{
     cursor: pointer;
     font-weight: bold;
     line-height: 70px;
-    /* border: 1px solid rgb(177, 7, 124); */
 }
 
 .task-content.marked{
